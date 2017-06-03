@@ -1,0 +1,108 @@
+﻿<Page
+    x:Class="ObjectOrientedBibleReading.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:data="using:PortableClasses.ViewModels"
+	xmlns:converters="using:PortableClasses.ViewModels"
+    mc:Ignorable="d">
+
+	<Page.Resources>
+		<converters:HasBeenReadConverter x:Key="HasBeenReadConverter"/>
+		<converters:TodaysChapterConverter x:Key="TodaysChapterConverter"/>
+	</Page.Resources>
+	
+	<!-- commands at the bottom of the screen -->
+	<Page.BottomAppBar>
+		<CommandBar>
+			<CommandBar.PrimaryCommands>
+				<AppBarButton Icon="Refresh" Label="refresh" Click="Refresh"/>
+				<AppBarButton Label="share" Click="Share">
+					<AppBarButton.Icon>
+						<FontIcon Glyph="&#xE72D;"/>
+					</AppBarButton.Icon>
+				</AppBarButton>
+				<AppBarButton Name="PlayFirstButton" Icon="Play" Label="play" Click="PlayFirstText"/>
+				<AppBarButton Name="PlayFromPauseButton" Icon="Play" Label="continue" Click="PlayPausedText" Visibility="Collapsed"/>
+				<AppBarButton Name="PauseButton" Icon="Pause" Label="pause" Click="PauseText" Visibility="Collapsed"/>
+			</CommandBar.PrimaryCommands>
+			<CommandBar.SecondaryCommands>
+				<!-- Icon doesn't display on Windows Phone or Windows 10 -->
+				<AppBarButton Icon="World" Label="Bible Reading Page" Click="OpenBibleReadingPage"/>
+				<AppBarButton Icon="Account" Label="Feedback" Click="SendEmail"/>
+				<AppBarButton Icon="Shop" Label="More From Developer" Click="MoreFromDeveloper"/>
+				<AppBarButton Icon="Setting" Label="Settings" Click="Settings"/>
+			</CommandBar.SecondaryCommands>
+		</CommandBar>
+	</Page.BottomAppBar>
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" x:Name="SplitViewButton" Padding="12" Background="Transparent" Click="SplitViewButton_Click">
+				<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;"/>
+			</Button>
+			<StackPanel Grid.Column="1">
+				<TextBlock Text="DAILY BIBLE READING" Padding="12" FontWeight="SemiBold"  FontSize="16"/>
+				<MediaElement x:Name="TextPlayer" AudioCategory="BackgroundCapableMedia" MediaEnded="PlayEnded"/>
+			</StackPanel>
+		</Grid>
+		<SplitView Grid.Row="1" x:Name="MySplitView" OpenPaneLength="240" PaneBackground="#735c40">
+			<SplitView.Pane>
+				<ListView Name="Chapters" ItemsSource="{x:Bind ChapterCollection}" Grid.Column="0" IsItemClickEnabled="True" ItemClick="Chapter_ItemClick">
+					<ListView.ItemTemplate>
+						<DataTemplate x:DataType="data:ChapterItem">
+							<StackPanel Width="240" Margin="-12 0" Padding="10" Background="{x:Bind IsTodaysChapter, Converter={StaticResource TodaysChapterConverter}, Mode=TwoWay}">
+								<TextBlock Text="{x:Bind date}" Style="{ThemeResource CaptionTextBlockStyle}" TextWrapping="Wrap" FontWeight="SemiBold" Foreground="{x:Bind HasBeenRead, Converter={StaticResource HasBeenReadConverter}, Mode=TwoWay}"/>
+								<TextBlock Loaded="SetFontSize" Text="{x:Bind ChapterReference}" Style="{ThemeResource BodyTextBlockStyle}" TextWrapping="Wrap" FontSize="20" Foreground="{x:Bind HasBeenRead, Converter={StaticResource HasBeenReadConverter}, Mode=TwoWay}"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</SplitView.Pane>
+			<ScrollViewer>
+				<ListView Name="Verses" ItemsSource="{x:Bind VerseCollection}">
+					<ListView.ItemTemplate>
+						<DataTemplate x:DataType="data:VerseItem">
+							<StackPanel Margin="0 10">
+								<TextBlock Text="{Binding VerseReference}" Style="{ThemeResource CaptionTextBlockStyle}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+								<TextBlock Loaded="SetFontSize" Text="{Binding text}" Style="{ThemeResource BodyTextBlockStyle}" TextWrapping="Wrap" FontSize="20" TextAlignment="Justify"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</ScrollViewer>
+		</SplitView>
+
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup>
+				<VisualState>
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="720" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="MySplitView.DisplayMode" Value="Inline" />
+						<Setter Target="MySplitView.IsPaneOpen" Value="True" />
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState>
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="0" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="MySplitView.DisplayMode" Value="Overlay" />
+						<Setter Target="MySplitView.IsPaneOpen" Value="False" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+	</Grid>
+</Page>

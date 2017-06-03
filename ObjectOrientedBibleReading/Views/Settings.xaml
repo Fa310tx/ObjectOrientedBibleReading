@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="ObjectOrientedBibleReading.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ObjectOrientedBibleReading.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<ScrollViewer>
+			<StackPanel Margin="10 0">
+				<TextBlock Text="Settings" Style="{StaticResource HeaderTextBlockStyle}"/>
+				<TextBlock Text="Bible Version" Style="{StaticResource SubtitleTextBlockStyle}"/>
+				<ComboBox Name="VersionComboBox" Loaded="SetVersion" SelectionChanged="Version_SelectionChanged">
+					<x:String>asv1901</x:String>
+					<x:String>bbe</x:String>
+					<x:String>darby</x:String>
+					<x:String>kjv</x:String>
+					<x:String>nasb</x:String>
+					<x:String>niv</x:String>
+					<x:String>nkjv</x:String>
+					<x:String>nlt</x:String>
+					<x:String>rsv</x:String>
+					<x:String>web</x:String>
+					<x:String>ylt</x:String>
+				</ComboBox>
+				<TextBlock Text="Font Size" Style="{StaticResource SubtitleTextBlockStyle}"/>
+				<ComboBox Name="FontSizeComboBox" SelectionChanged="FontSize_SelectionChanged">
+					<x:String>10</x:String>
+					<x:String>11</x:String>
+					<x:String>12</x:String>
+					<x:String>13</x:String>
+					<x:String>14</x:String>
+					<x:String>15</x:String>
+					<x:String>16</x:String>
+					<x:String>17</x:String>
+					<x:String>18</x:String>
+					<x:String>19</x:String>
+					<x:String>20</x:String>
+					<x:String>21</x:String>
+					<x:String>22</x:String>
+					<x:String>23</x:String>
+					<x:String>24</x:String>
+					<x:String>25</x:String>
+					<x:String>26</x:String>
+					<x:String>27</x:String>
+					<x:String>28</x:String>
+					<x:String>29</x:String>
+					<x:String>30</x:String>
+					<x:String>31</x:String>
+					<x:String>32</x:String>
+					<x:String>33</x:String>
+					<x:String>34</x:String>
+					<x:String>35</x:String>
+					<x:String>36</x:String>
+					<x:String>37</x:String>
+					<x:String>38</x:String>
+					<x:String>39</x:String>
+				</ComboBox>
+				<TextBlock Name="LoremIpsum" Loaded="SetFontSize" Margin="0 0 0 10" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." TextWrapping="Wrap" TextAlignment="Justify"/>
+				<TextBlock Text="Speech" Style="{StaticResource SubtitleTextBlockStyle}"/>
+				<TextBlock Loaded="SetFontSize" TextWrapping="Wrap" TextAlignment="Justify">
+	            <Run>To change the voice or speed, go to the </Run>
+				<Hyperlink NavigateUri="ms-settings:speech">speech settings page</Hyperlink>
+				<Run>.</Run>
+				</TextBlock>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</Page>
