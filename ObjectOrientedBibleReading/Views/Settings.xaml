@@ -12,7 +12,8 @@
 			<StackPanel Margin="10 0">
 				<TextBlock Text="Settings" Style="{StaticResource HeaderTextBlockStyle}"/>
 				<TextBlock Text="Bible Version" Style="{StaticResource SubtitleTextBlockStyle}"/>
-				<ComboBox Name="VersionComboBox" Loaded="SetVersion" SelectionChanged="Version_SelectionChanged">
+				<ComboBox Name="VersionComboBox" Loaded="SetVersion" ItemsSource="{Binding}" SelectionChanged="Version_SelectionChanged">
+					<!--
 					<x:String>asv1901</x:String>
 					<x:String>bbe</x:String>
 					<x:String>darby</x:String>
@@ -24,9 +25,21 @@
 					<x:String>rsv</x:String>
 					<x:String>web</x:String>
 					<x:String>ylt</x:String>
+					-->
 				</ComboBox>
 				<TextBlock Text="Font Size" Style="{StaticResource SubtitleTextBlockStyle}"/>
-				<ComboBox Name="FontSizeComboBox" SelectionChanged="FontSize_SelectionChanged">
+				<ComboBox Name="FontSizeComboBox" ItemsSource="{Binding}" SelectionChanged="FontSize_SelectionChanged">
+					<!--
+					<x:String>0</x:String>
+					<x:String>1</x:String>
+					<x:String>2</x:String>
+					<x:String>3</x:String>
+					<x:String>4</x:String>
+					<x:String>5</x:String>
+					<x:String>6</x:String>
+					<x:String>7</x:String>
+					<x:String>8</x:String>
+					<x:String>9</x:String>
 					<x:String>10</x:String>
 					<x:String>11</x:String>
 					<x:String>12</x:String>
@@ -57,6 +70,17 @@
 					<x:String>37</x:String>
 					<x:String>38</x:String>
 					<x:String>39</x:String>
+					<x:String>40</x:String>
+					<x:String>41</x:String>
+					<x:String>42</x:String>
+					<x:String>43</x:String>
+					<x:String>44</x:String>
+					<x:String>45</x:String>
+					<x:String>46</x:String>
+					<x:String>47</x:String>
+					<x:String>48</x:String>
+					<x:String>49</x:String>
+					-->
 				</ComboBox>
 				<TextBlock Name="LoremIpsum" Loaded="SetFontSize" Margin="0 0 0 10" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." TextWrapping="Wrap" TextAlignment="Justify"/>
 				<TextBlock Text="Speech" Style="{StaticResource SubtitleTextBlockStyle}"/>

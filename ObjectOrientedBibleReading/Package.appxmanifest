@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="55881JoshuaJackson.DailyBibleReading" Publisher="CN=BC99C236-AE79-43DE-A9AB-43954D617EDE" Version="3.3.0.0" />
-  <mp:PhoneIdentity PhoneProductId="da95c6a0-1fa4-44d0-a6bd-e17a4f7e63b4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="55881JoshuaJackson.DailyBibleReading" Publisher="CN=BC99C236-AE79-43DE-A9AB-43954D617EDE" Version="3.4.0.0" />
+  <mp:PhoneIdentity PhoneProductId="1fd63c7c-76f3-4fed-b43c-6364b5b565e5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Daily Bible Reading</DisplayName>
     <PublisherDisplayName>Joshua Jackson</PublisherDisplayName>
@@ -26,12 +26,12 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#735c40" />
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.DownloadContent">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.UpdateTiles">
           <BackgroundTasks>
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.UpdateTiles">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.DownloadContent">
           <BackgroundTasks>
             <Task Type="timer" />
           </BackgroundTasks>

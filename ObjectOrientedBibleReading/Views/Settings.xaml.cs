@@ -29,6 +29,121 @@ namespace ObjectOrientedBibleReading.Views
 		public Settings()
 		{
 			this.InitializeComponent();
+
+			List<string> FontSizes = new List<string>();
+			for (int i = 0; i < 50; i++)
+			{
+				FontSizes.Add(i.ToString());
+			}
+
+			List<string> VersionAbbreviations = new List<string>
+			{
+				"asv1901",
+				"bbe",
+				"cjb",
+				"cev",
+				"darby",
+				"erv",
+				"gnv",
+				"gw",
+				"gnt",
+				"hnv",
+				"hcsb",
+				"kjv",
+				"mkjv",
+				"nasb",
+				"ncv",
+				"net",
+				"nirv",
+				"nkjv",
+				"nlt",
+				"nrsv",
+				"rsv",
+				"amp",
+				"esv",
+				"tlb",
+				"msg",
+				"niv",
+				"tev",
+				"tniv",
+				"wbt",
+				"web",
+				"ylt",
+			};
+			List<string> VersionNames = new List<string>
+			{
+				"American Standard Version",
+				"Bible In Basic English",
+				"Complete Jewish Bible",
+				"Contemporary English Version",
+				"Darby Bible",
+				"Easy-To-Read Version",
+				"Geneva Bible",
+				"God's Word",
+				"Good News Translation",
+				"Hebrew Names Version Of The World English Bible",
+				"Holman Christian Standard Bible",
+				"King James Version",
+				"Modern King James Version",
+				"New American Standard Bible",
+				"New Century Version",
+				"New English Translation",
+				"New International Reader's Version",
+				"New King James Version",
+				"New Living Translation",
+				"New Revised Standard Version",
+				"Revised Standard Version",
+				"The Amplified Bible",
+				"The English Standard Version",
+				"The Living Bible",
+				"The Message",
+				"The New International Version",
+				"Today's English Version",
+				"Today's New International Version",
+				"Webster's Bible Translation",
+				"World English Bible",
+				"Young's Literal Translation",
+			};
+			Dictionary<string, string> VersionDictionary = new Dictionary<string, string>()
+			{
+				{ "asv1901", "American Standard Version" },
+				{ "bbe", "Bible In Basic English" },
+				{ "cjb", "Complete Jewish Bible" },
+				{ "cev", "Contemporary English Version" },
+				{ "darby", "Darby Bible" },
+				{ "erv", "Easy-To-Read Version" },
+				{ "gnv", "Geneva Bible" },
+				{ "gw", "God's Word" },
+				{ "gnt", "Good News Translation" },
+				{ "hnv", "Hebrew Names Version Of The World English Bible" },
+				{ "hcsb", "Holman Christian Standard Bible" },
+				{ "kjv", "King James Version" },
+				{ "mkjv", "Modern King James Version" },
+				{ "nasb", "New American Standard Bible" },
+				{ "ncv", "New Century Version" },
+				{ "net", "New English Translation" },
+				{ "nirv", "New International Reader's Version" },
+				{ "nkjv", "New King James Version" },
+				{ "nlt", "New Living Translation" },
+				{ "nrsv", "New Revised Standard Version" },
+				{ "rsv", "Revised Standard Version" },
+				{ "amp", "The Amplified Bible" },
+				{ "esv", "The English Standard Version" },
+				{ "tlb", "The Living Bible" },
+				{ "msg", "The Message" },
+				{ "niv", "The New International Version" },
+				{ "tev", "Today's English Version" },
+				{ "tniv", "Today's New International Version" },
+				{ "wbt", "Webster's Bible Translation" },
+				{ "web", "World English Bible" },
+				{ "ylt", "Young's Literal Translation" },
+			};
+
+			// connect the data to the interface
+			// data binding for today's chapter
+			FontSizeComboBox.DataContext = FontSizes;
+			// data binding for reading schedule
+			VersionComboBox.DataContext = VersionAbbreviations;
 		}
 
 		// what to do when the page is navigated to
@@ -61,7 +176,7 @@ namespace ObjectOrientedBibleReading.Views
 			{
 				var fontsize = Convert.ToInt32(roamingsettings.Values[devicename + "_FontSize"]);
 				textblock.FontSize = fontsize;
-				FontSizeComboBox.SelectedIndex = fontsize - 10;
+				FontSizeComboBox.SelectedIndex = fontsize;
 			}
 			else
 			{
@@ -73,7 +188,7 @@ namespace ObjectOrientedBibleReading.Views
 
 		private void FontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var newfontsize = FontSizeComboBox.SelectedIndex + 10;
+			var newfontsize = FontSizeComboBox.SelectedIndex;
 			LoremIpsum.FontSize = newfontsize;
 
 			// store the user preferences
