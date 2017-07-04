@@ -36,74 +36,6 @@ namespace ObjectOrientedBibleReading.Views
 				FontSizes.Add(i.ToString());
 			}
 
-			List<string> VersionAbbreviations = new List<string>
-			{
-				"asv1901",
-				"bbe",
-				"cjb",
-				"cev",
-				"darby",
-				"erv",
-				"gnv",
-				"gw",
-				"gnt",
-				"hnv",
-				"hcsb",
-				"kjv",
-				"mkjv",
-				"nasb",
-				"ncv",
-				"net",
-				"nirv",
-				"nkjv",
-				"nlt",
-				"nrsv",
-				"rsv",
-				"amp",
-				"esv",
-				"tlb",
-				"msg",
-				"niv",
-				"tev",
-				"tniv",
-				"wbt",
-				"web",
-				"ylt",
-			};
-			List<string> VersionNames = new List<string>
-			{
-				"American Standard Version",
-				"Bible In Basic English",
-				"Complete Jewish Bible",
-				"Contemporary English Version",
-				"Darby Bible",
-				"Easy-To-Read Version",
-				"Geneva Bible",
-				"God's Word",
-				"Good News Translation",
-				"Hebrew Names Version Of The World English Bible",
-				"Holman Christian Standard Bible",
-				"King James Version",
-				"Modern King James Version",
-				"New American Standard Bible",
-				"New Century Version",
-				"New English Translation",
-				"New International Reader's Version",
-				"New King James Version",
-				"New Living Translation",
-				"New Revised Standard Version",
-				"Revised Standard Version",
-				"The Amplified Bible",
-				"The English Standard Version",
-				"The Living Bible",
-				"The Message",
-				"The New International Version",
-				"Today's English Version",
-				"Today's New International Version",
-				"Webster's Bible Translation",
-				"World English Bible",
-				"Young's Literal Translation",
-			};
 			Dictionary<string, string> VersionDictionary = new Dictionary<string, string>()
 			{
 				{ "asv1901", "American Standard Version" },
@@ -138,12 +70,15 @@ namespace ObjectOrientedBibleReading.Views
 				{ "web", "World English Bible" },
 				{ "ylt", "Young's Literal Translation" },
 			};
+			// take the dictionary<string, string>, turn it into an ienumerable<keyvaluepair<string, string>>, use linq to output the contents, format a new string based on those contents, turn it into list<string>
+			// "Bible In Basic English (bbe)
+			var VersionList = VersionDictionary.AsEnumerable().Select(x => string.Format("{0} ({1})", x.Value, x.Key.ToUpper())).ToList();
 
 			// connect the data to the interface
 			// data binding for today's chapter
 			FontSizeComboBox.DataContext = FontSizes;
 			// data binding for reading schedule
-			VersionComboBox.DataContext = VersionAbbreviations;
+			VersionComboBox.DataContext = VersionList;
 		}
 
 		// what to do when the page is navigated to
@@ -207,18 +142,127 @@ namespace ObjectOrientedBibleReading.Views
 			if (roamingsettings.Values.ContainsKey("Version"))
 			{
 				var version = roamingsettings.Values["Version"].ToString();
-				VersionComboBox.SelectedItem = version.Remove(0, 2);
+
+				switch (version)
+				{
+					case "b_asv1901":
+						VersionComboBox.SelectedIndex = 0;
+						break;
+					case "b_bbe":
+						VersionComboBox.SelectedIndex = 1;
+						break;
+					case "b_cjb":
+						VersionComboBox.SelectedIndex = 2;
+						break;
+					case "b_cev":
+						VersionComboBox.SelectedIndex = 3;
+						break;
+					case "b_darby":
+						VersionComboBox.SelectedIndex = 4;
+						break;
+					case "b_erv":
+						VersionComboBox.SelectedIndex = 5;
+						break;
+					case "b_gnv":
+						VersionComboBox.SelectedIndex = 6;
+						break;
+					case "b_gw":
+						VersionComboBox.SelectedIndex = 7;
+						break;
+					case "b_gnt":
+						VersionComboBox.SelectedIndex = 8;
+						break;
+					case "b_hnv":
+						VersionComboBox.SelectedIndex = 9;
+						break;
+					case "b_hcsb":
+						VersionComboBox.SelectedIndex = 10;
+						break;
+					case "b_kjv":
+						VersionComboBox.SelectedIndex = 11;
+						break;
+					case "b_mkjv":
+						VersionComboBox.SelectedIndex = 12;
+						break;
+					case "b_nasb":
+						VersionComboBox.SelectedIndex = 13;
+						break;
+					case "b_ncv":
+						VersionComboBox.SelectedIndex = 14;
+						break;
+					case "b_net":
+						VersionComboBox.SelectedIndex = 15;
+						break;
+					case "b_nirv":
+						VersionComboBox.SelectedIndex = 16;
+						break;
+					case "b_nkjv":
+						VersionComboBox.SelectedIndex = 17;
+						break;
+					case "b_nlt":
+						VersionComboBox.SelectedIndex = 18;
+						break;
+					case "b_nrsv":
+						VersionComboBox.SelectedIndex = 19;
+						break;
+					case "b_rsv":
+						VersionComboBox.SelectedIndex = 20;
+						break;
+					case "b_amp":
+						VersionComboBox.SelectedIndex = 21;
+						break;
+					case "b_esv":
+						VersionComboBox.SelectedIndex = 22;
+						break;
+					case "b_tlb":
+						VersionComboBox.SelectedIndex = 23;
+						break;
+					case "b_msg":
+						VersionComboBox.SelectedIndex = 24;
+						break;
+					case "b_niv":
+						VersionComboBox.SelectedIndex = 25;
+						break;
+					case "b_tev":
+						VersionComboBox.SelectedIndex = 26;
+						break;
+					case "b_tniv":
+						VersionComboBox.SelectedIndex = 27;
+						break;
+					case "b_wbt":
+						VersionComboBox.SelectedIndex = 28;
+						break;
+					case "b_web":
+						VersionComboBox.SelectedIndex = 29;
+						break;
+					case "b_ylt":
+						VersionComboBox.SelectedIndex = 30;
+						break;
+					default:
+						// default is kjv
+						VersionComboBox.SelectedIndex = 11;
+						break;
+				}
 			}
 			else
 			{
 				// set a default
-				VersionComboBox.SelectedItem = "kjv";
+				VersionComboBox.SelectedIndex = 11;
 			}
 		}
 
 		private void Version_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var version = "b_" + VersionComboBox.SelectedItem;
+			var selecteditem = VersionComboBox.SelectedItem.ToString();
+			// single quotes make it type Char while double quotes make it type String
+			Char delimiter = '(';
+			// create an array from the string separated by the delimiter
+			String[] selecteditemparts = selecteditem.Split(delimiter);
+			// take off the beginning character
+			var selecteditemvalue = selecteditemparts[0].Substring(0, (selecteditemparts[0].Length - 1));
+			// take off the beginning and ending character
+			var selecteditemkey = selecteditemparts[1].Substring(0, (selecteditemparts[1].Length - 1));
+			var version = "b_" + selecteditemkey.ToLower();
 
 			// store the user preferences
 			// set the preference

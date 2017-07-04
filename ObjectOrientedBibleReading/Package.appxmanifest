@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="55881JoshuaJackson.DailyBibleReading" Publisher="CN=BC99C236-AE79-43DE-A9AB-43954D617EDE" Version="3.4.0.0" />
-  <mp:PhoneIdentity PhoneProductId="1fd63c7c-76f3-4fed-b43c-6364b5b565e5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="55881JoshuaJackson.DailyBibleReading-Beta" Publisher="CN=BC99C236-AE79-43DE-A9AB-43954D617EDE" Version="3.5.0.0" />
+  <mp:PhoneIdentity PhoneProductId="a8499cf2-d758-4db9-9cc6-3847b0567935" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Daily Bible Reading</DisplayName>
+    <DisplayName>Daily Bible Reading - Beta</DisplayName>
     <PublisherDisplayName>Joshua Jackson</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ObjectOrientedBibleReading.App">
-      <uap:VisualElements DisplayName="Daily Bible Reading" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="ObjectOrientedBibleReading" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Daily Bible Reading - Beta" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="ObjectOrientedBibleReading" BackgroundColor="transparent">
         <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\BadgeLogo.png" />
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\Square310x310Logo.png" Square71x71Logo="Assets\Square71x71Logo.png">
           <uap:ShowNameOnTiles>
